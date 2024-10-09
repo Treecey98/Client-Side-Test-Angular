@@ -1,0 +1,80 @@
+/* Add application styles & imports to this file! */
+
+* {
+  font-family: sans-serif;
+}
+
+div {
+  margin-right: 20px;
+}
+
+ul {
+  padding-inline-start: 0px;
+  width: 100%;
+}
+
+button {
+  display: flex;
+  border: none;
+  color: black;
+  padding: 10px;
+  background: none;
+  border-radius: 5px;
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+  width: 155px;
+}
+
+.categories:hover {
+  color: white;
+  background: #0099cc;
+  width: 155px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.categories:hover .number-of-applets {
+  background: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 20px;
+  color: #0099cc;
+  padding: 2px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.applets-search {
+  border: 1px solid #eeee;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.applets-container {
+  width: 100%;
+}
+
+.applets-list {
+  list-style: none;
+  padding: 20px;
+  background-color: #eeee;
+  border-radius: 5px;
+  margin: 10px 10px 0px 0px;
+  font-size: 14px;
+}
+
+.number-of-applets {
+  background: grey;
+  border-radius: 50%;
+  width: 25px;
+  height: 20px;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  margin-right: 10px;
+}
