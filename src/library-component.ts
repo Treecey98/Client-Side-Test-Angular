@@ -65,6 +65,7 @@ export class LibraryComponents {
   }
 
   filterApplets($event: any) {
+    this.clicked = false;
     const data = $event.target.value;
     this.filteredApplets = this.appletsList.filter((applet: any) => applet['name'] == data)
     this.userInput = data;
