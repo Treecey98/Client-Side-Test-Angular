@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { ApplicationRef, Component } from '@angular/core';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import lib from './assets/model.js';
 
 @Component({
   selector: 'library-components',
+  imports: [ScrollingModule],
   standalone: true,
   template: `
     <div>
@@ -27,10 +29,12 @@ import lib from './assets/model.js';
     <div class="applets-container">
       <h4>Applets</h4>
       <ul>
-          @for (applet of appletsList; track applet.name){
-            @if (applet.categories.includes(this.category) && this.userInput == ""){
+          @if (clicked){
+            @for (applet of filteredApplets; track applet.name){
               <li class="applets-list">{{applet.name}}</li>
-            } @else if (this.userInput == applet.name){
+            }
+          } @else if (userInput != "") {
+            @for (applet of filteredApplets; track applet.name){
               <li class="applets-list">{{applet.name}}</li>
             }
           }
@@ -41,46 +45,35 @@ import lib from './assets/model.js';
 })
 export class LibraryComponents {
   categoryList = lib['categories'];
-
   appletsList = lib['applets'];
 
-  category: string = '';
+  filteredApplets: any = [];
 
   userInput: string = '';
 
+  clicked: boolean = false;
+
   changeCategory(selectedCategory: string) {
-    this.category = selectedCategory;
+    this.filteredApplets = this.appletsList.filter((applet: any) => applet['categories'].includes(selectedCategory))
+    this.clicked = true;
   }
 
   numberOfApplets(category: string) {
-    let count: number = 0;
-
-    this.appletsList.forEach((applet: any) => {
-      if (applet['categories'].includes(category)) {
-        count++;
-      }
-    });
-
-    return count;
+    const number = this.appletsList.filter((applet: any) => applet['categories'].includes(category)).length
+    
+    return number
   }
 
   filterApplets($event: any) {
     const data = $event.target.value;
+    this.filteredApplets = this.appletsList.filter((applet: any) => applet['name'] == data)
     this.userInput = data;
   }
 
   filteredNumberOfApplets(category: string) {
-    let count: number = 0;
+    const number = this.appletsList.filter((applet: any) => applet['categories'].includes(category) && applet['name'] == this.userInput).length
 
-    this.appletsList.forEach((applet: any) => {
-      if (
-        applet['categories'].includes(category) &&
-        applet['name'] == this.userInput
-      ) {
-        count++;
-      }
-    });
-
-    return count;
+    return number;
   }
 }
+
