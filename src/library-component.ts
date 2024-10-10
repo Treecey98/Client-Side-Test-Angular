@@ -1,10 +1,8 @@
-import { ApplicationRef, Component } from '@angular/core';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { Component } from '@angular/core';
 import lib from './assets/model.js';
 
 @Component({
   selector: 'library-components',
-  imports: [ScrollingModule],
   standalone: true,
   template: `
     <div>
@@ -26,7 +24,7 @@ import lib from './assets/model.js';
         }
       </ul>
     </div>
-    <div class="applets-container">
+    <div class="applets-container" cdk-virtual-scroll-viewport>
       <h4>Applets</h4>
       <ul>
           @if (clicked){
